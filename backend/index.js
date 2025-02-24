@@ -8,17 +8,17 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 
-const allowedOrigins = process.env.ALLOWED_ORIGINS ?
-    process.env.ALLOWED_ORIGINS.split(',') : [];
+// const allowedOrigins = process.env.ALLOWED_ORIGINS ?
+//     process.env.ALLOWED_ORIGINS.split(',') : [];
 
-app.use(cors({
-    origin: allowedOrigins,
-    credentials: true,
-}));
+// app.use(cors({
+//     origin: allowedOrigins,
+//     credentials: true,
+// }));
 
 // Keep-alive function to ping the server
 const keepAlive = () => {
-    const url = 'https://quiz-app-api-smye.onrender.com'; // URL for your Render app
+    const url = 'https://appquiz-ooix.onrender.com'; // URL for your Render app
 
     https.get(url, (res) => {
         console.log('Keep-alive ping successful', res.statusCode);
@@ -30,14 +30,16 @@ const keepAlive = () => {
 // Set up keep-alive interval (every 5 minutes)
 setInterval(keepAlive, 5 * 60 * 1000);
 
-// Enable CORS for your frontend
-// app.use(cors({
-//     origin: [
-//         'http://localhost:5173', // Local frontend
-//         'https://quizapp-nzt2.onrender.com' // Production frontend
-//     ],
-//     credentials: true, // Allow cookies to be sent
-// }));
+// Enable CORS
+// for your frontend
+app.use(cors({
+    origin: [
+        'http://localhost:5173', // Local frontend
+        'https://appquiz-1.onrender.com'
+        // Production frontend
+    ],
+    credentials: true, // Allow cookies to be sent
+}));
 
 
 // API root entry point for welcome message
